@@ -155,7 +155,7 @@ Add it to the `plugins` dictionary in main:
 And that's it your template can use it by calling:
 
 ```md
-#This is my profile
+# This is my profile
 
 {{octo-plugin:HelloWorld}}
 ```
@@ -168,7 +168,7 @@ $ swift run octoprofile ./Resources/template.md
 
 And you should see the hello world displayed on the screen.
 
-#Contributions and Feedback
+# Contributions and Feedback
 
 Octoprofile is a working progress, and far from complete. There are many improvements I would like to implement (plugin system, I'm looking at you) but I'm just doing this as a pet project. 
 
