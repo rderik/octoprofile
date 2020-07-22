@@ -5,7 +5,7 @@ Hello, I'm Derik - a *nix command-line tools developer, primarily macOS. I also 
 
 ### Get in touch
 - 🕸 Website - [rderik.com](https://rderik.com)
-- 🐦 Twitter - [@rderik](https://twitter.com/rderik)
+- 🐦 Twitter - {{octo-plugin:Twitter:rderik}}
 - ✉️ Mail - [derik@rderik.com](mailto:derik@rderik.com)
 - 🐙 GitHub Gists - [Gists](https://gist.github.com/rderik)
 
@@ -13,6 +13,4 @@ The following is the list of the latest articles on my blog:
 
 {{octo-plugin:RSS:http://rderik.com/feed.xml:numPosts:3}}
 
-Don't forget to follow me on twitter At {{octo-plugin:Twitter:rderik}}
-
-{{octo-plugin:HelloWorld}}
+Don't forget to follow me on twitter at {{octo-plugin:Twitter:rderik}}
