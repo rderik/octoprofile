@@ -15,7 +15,7 @@ struct TwitterPlugin: OctoPlugin {
     private var username: String?
 
     func execute() -> String {
-        guard let username = username else { return "" } 
+        guard let username = username else { return "" }
         return "[@\(username)](https://twitter.com/\(username))"
     }
 }

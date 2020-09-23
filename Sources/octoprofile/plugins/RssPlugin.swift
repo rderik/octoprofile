@@ -6,10 +6,9 @@ struct BlogPost {
     var url: String?
 }
 
-
 struct RssPlugin: OctoPlugin {
     static var name = "RSS"
-    
+
     var parameter: String? {
         get {
             return _feedURL
@@ -20,7 +19,7 @@ struct RssPlugin: OctoPlugin {
             defaultPostNum = Int(parameters?.last ?? "") ?? 5
         }
     }
-    
+
     var defaultPostNum = 5
     private var _feedURL: String?
 
@@ -30,7 +29,7 @@ struct RssPlugin: OctoPlugin {
             let message = "Error: missing feed URL"
             stderr.write(message.data(using: .utf8)!)
             Foundation.exit(EXIT_FAILURE)
-        } 
+        }
         guard let url = URL(string: _feedURL ) else {
             let message = "Error: malformed url \(_feedURL)"
             stderr.write(message.data(using: .utf8)!)
@@ -47,31 +46,32 @@ struct RssPlugin: OctoPlugin {
             switch feed {
             case .rss(let myFeed):
                 let postNum = min(defaultPostNum, myFeed.items?.count ?? 0)
-                for i in (0 ..< postNum)  {
+                for i in (0 ..< postNum) {
                     let title = myFeed.items?[i].title ?? ""
                     let link = myFeed.items?[i].link ?? ""
-                    blogPosts.append(BlogPost(title:title, url: link))
+                    blogPosts.append(BlogPost(title: title, url: link))
                 }
             case .atom(let myFeed):
                 let postNum = min(defaultPostNum, myFeed.entries?.count ?? 0)
-                for i in (0 ..< postNum)  {
+                for i in (0 ..< postNum) {
                     let title = myFeed.entries?[i].title ?? ""
                     let link = myFeed.entries?[i].links?[0].attributes?.href ?? "#"
-                    blogPosts.append(BlogPost(title:title, url: link))
+                    blogPosts.append(BlogPost(title: title, url: link))
                 }
             case .json(let myFeed):
                 print("Is Json")
                 let postNum = min(defaultPostNum, myFeed.items?.count ?? 0)
-                for i in (0 ..< postNum)  {
+                for i in (0 ..< postNum) {
                     let title = myFeed.items?[i].title ?? ""
                     let link = myFeed.items?[i].url ?? ""
-                    blogPosts.append(BlogPost(title:title, url: link))
+                    blogPosts.append(BlogPost(title: title, url: link))
                 }
             }
-
-            case .failure(let error):
-                stderr.write((error.localizedDescription.data(using: .utf8) ?? "Error: Can't parse feed".data(using: .utf8))!)
-                Foundation.exit(EXIT_FAILURE)
+        case .failure(let error):
+            stderr.write(
+                (error.localizedDescription.data(using: .utf8) ?? "Error: Can't parse feed".data(using: .utf8))!
+            )
+            Foundation.exit(EXIT_FAILURE)
         }
         var content = ""
         for blogPost in blogPosts {
